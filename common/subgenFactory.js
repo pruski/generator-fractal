@@ -1,7 +1,7 @@
 var _ = require('lodash');
 var FractalBase = require('./FractalBase');
 
-var subgenBase = {
+var subgenFactory = {
     constructor: function () {
         FractalBase.apply(this, arguments);
 
@@ -23,6 +23,6 @@ var subgenBase = {
 
 module.exports = {
     create: function (customs) {
-        return FractalBase.extend(_.extend({}, subgenBase, customs));
+        return FractalBase.extend(_.extend({}, subgenFactory, customs));
     }
 };

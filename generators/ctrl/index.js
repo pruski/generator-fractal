@@ -1,7 +1,7 @@
 "use strict";
 
-var subgenBase  = require('../../common/subgenBase');
+var subgenFactory  = require('../../common/subgenFactory');
 
-module.exports = subgenBase.create({
+module.exports = subgenFactory.create({
     _filenamePostfix: '-controller.js'
 });
