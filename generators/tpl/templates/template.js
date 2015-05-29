@@ -1,0 +1,3 @@
+<div class="<%= dashedName %>">
+
+</div>

@@ -2,12 +2,18 @@ var _ = require('lodash');
 var FractalBase = require('./FractalBase');
 
 var subgenBase = {
+    constructor: function () {
+        FractalBase.apply(this, arguments);
+
+        this.option('deep'); // --deep flag
+    },
+
     initializing: function () {
         this._greetings();
     },
 
     writing: function(){
-        this._write();
+        this._write(this.options.deep);
     },
 
     end: function(){

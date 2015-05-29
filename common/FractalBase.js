@@ -8,12 +8,11 @@ var yosay = require('yosay');
 module.exports = generators.NamedBase.extend({
     _filenamePostfix: '*placeholder*',
     _greetingText   : 'Hi there!',
+    _subgenerators  : [],
 
-    constructor: function () {
+
+    constructor: function(preventDefaultFlags) {
         generators.NamedBase.apply(this, arguments);
-
-        this.option('deep'); // --deep flag
-
 
         this.camelCasedName = _.camelCase(this.name);
     },
@@ -30,18 +29,35 @@ module.exports = generators.NamedBase.extend({
         }
     },
 
-    _write: function () {
-        if(this.options.deep) {
+    _write: function (deep) {
+        if(deep) {
             this._filePath = this.name + '/' + this.name + this._filenamePostfix;
 
         } else {
             this._filePath = this.name + this._filenamePostfix;
         }
 
-        this.fs.copyTpl(
-            this.templatePath('index.html'),
-            this.destinationPath(this._filePath),
-            { camelCasedName: this.camelCasedName }
+        this.fs.copyTpl(this.templatePath('template.js'), this.destinationPath(this._filePath), {
+                dashedName       : this.name,
+                camelCasedName   : this.camelCasedName,
+                templateCacheName: 'templates/' + this.name,
+                ctrl             : this._subgenerators.indexOf('ctrl') > -1
+            }
         );
+    },
+
+    _subgenerator: function(subgeneratorName, content) {
+        var done = this.async();
+        var opts = {
+            deep: true
+        };
+
+        if(content) {
+            opts.content = content;
+        }
+
+        this.invoke("fractal:" + subgeneratorName, {args: [this.name], options: opts}, function(){
+            done();
+        });
     }
 });
