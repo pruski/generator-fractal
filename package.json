@@ -1,0 +1,17 @@
+{
+  "name": "generator-fractal",
+  "version": "0.1.0",
+  "description": "An Angular module generator supporting fractal-structured codebases.",
+  "files": [
+    "app"
+  ],
+  "keywords": [
+    "yeoman-generator",
+    "AngularJS"
+  ],
+  "dependencies": {
+    "lodash": "^3.9.3",
+    "yeoman-generator": "^0.20.1",
+    "yosay": "^1.0.4"
+  }
+}
