@@ -47,7 +47,6 @@ module.exports = generators.NamedBase.extend({
     },
 
     _subgenerator: function(subgeneratorName, content) {
-        var done = this.async();
         var opts = {
             deep: true
         };
@@ -56,8 +55,6 @@ module.exports = generators.NamedBase.extend({
             opts.content = content;
         }
 
-        this.invoke("fractal:" + subgeneratorName, {args: [this.name], options: opts}, function(){
-            done();
-        });
+        this.composeWith('fractal:' + subgeneratorName, { args: [this.name], options: opts});
     }
 });
