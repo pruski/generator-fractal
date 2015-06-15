@@ -1,11 +1,10 @@
 var FractalBase = require('../../common/FractalBase');
 
 module.exports = FractalBase.extend({
-    _context: 'js',
-    _filenamePostfix: '-module.js',
-
     constructor: function () {
         FractalBase.apply(this, arguments);
+
+        this._subgenerators.push('comp');
     },
 
     initializing: function () {
@@ -60,8 +59,6 @@ module.exports = FractalBase.extend({
     },
 
     writing: function () {
-        this._write(true);
-
         this._subgenerators.forEach(function (subgeneratorName) {
             this._subgenerator(subgeneratorName);
 

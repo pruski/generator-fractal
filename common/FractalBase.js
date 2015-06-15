@@ -7,11 +7,10 @@ var generators = require('yeoman-generator');
 var yosay = require('yosay');
 
 module.exports = generators.NamedBase.extend({
-    _context        : 'js',
     _filenamePostfix: '.js',
     _greetingText   : 'Hi there!',
+    _context        : 'js',
     _subgenerators  : [],
-
 
     constructor: function(preventDefaultFlags) {
         generators.NamedBase.apply(this, arguments);
