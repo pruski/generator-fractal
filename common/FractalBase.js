@@ -67,7 +67,7 @@ module.exports = generators.NamedBase.extend({
 
         this._filePath += this.name + this._filenamePostfix;
 
-        this.fs.copyTpl(this.templatePath('template.js'), this._filePath, {
+        this.fs.copyTpl(this.templatePath('template.ejs'), this._filePath, {
                 dashedName       : this.name,
                 camelCasedName   : this.camelCasedName,
                 templateCacheName: 'templates/' + this.name,
