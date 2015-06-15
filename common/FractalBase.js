@@ -1,11 +1,13 @@
 "use strict";
 
 var _ = require('lodash');
+var sep = require('path').sep;
 
 var generators = require('yeoman-generator');
 var yosay = require('yosay');
 
 module.exports = generators.NamedBase.extend({
+    _context        : 'js',
     _filenamePostfix: '.js',
     _greetingText   : 'Hi there!',
     _subgenerators  : [],
@@ -14,7 +16,16 @@ module.exports = generators.NamedBase.extend({
     constructor: function(preventDefaultFlags) {
         generators.NamedBase.apply(this, arguments);
 
+        var fileCtx = this.config.get("fileContext");
+
         this.camelCasedName = _.camelCase(this.name);
+
+        this._fractalConfig = {
+            knownCtxs: Object.keys(fileCtx),
+            ctxs: fileCtx ? fileCtx : false
+        };
+
+        this._fractalDistPath = this._getDistPath();
     },
 
     _greetings: function () {
@@ -29,15 +40,35 @@ module.exports = generators.NamedBase.extend({
         }
     },
 
-    _write: function (deep) {
-        if(deep) {
-            this._filePath = this.name + '/' + this.name + this._filenamePostfix;
+    _getDistPath: function () {
+        var tmpDistPath  =  this.env.cwd.replace(this.destinationRoot() + sep, ''),
+            contextFound = false;
+
+        this._fractalConfig.knownCtxs.forEach(function(ctx) {
+            if(tmpDistPath.indexOf(ctx + sep) === 0) {
+                contextFound = true;
+                tmpDistPath = tmpDistPath.replace(ctx + sep, '');
+            }
+        });
+
+        if(contextFound) {
+            return this.destinationRoot() + sep + this._fractalConfig.ctxs[this._context].path + sep + tmpDistPath + sep;
 
         } else {
-            this._filePath = this.name + this._filenamePostfix;
+            return this.env.cwd;
+        }
+    },
+
+    _write: function (deep) {
+        this._filePath = this._fractalDistPath + sep;
+
+        if(deep) {
+            this._filePath += this.name + sep;
         }
 
-        this.fs.copyTpl(this.templatePath('template.js'), this.destinationPath(this._filePath), {
+        this._filePath += this.name + this._filenamePostfix;
+
+        this.fs.copyTpl(this.templatePath('template.js'), this._filePath, {
                 dashedName       : this.name,
                 camelCasedName   : this.camelCasedName,
                 templateCacheName: 'templates/' + this.name,

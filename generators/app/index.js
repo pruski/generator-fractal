@@ -1,6 +1,7 @@
 var FractalBase = require('../../common/FractalBase');
 
 module.exports = FractalBase.extend({
+    _context: 'js',
     _filenamePostfix: '-module.js',
 
     constructor: function () {
