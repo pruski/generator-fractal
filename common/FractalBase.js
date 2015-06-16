@@ -80,7 +80,7 @@ module.exports = generators.NamedBase.extend({
         this.fs.copyTpl(this.templatePath('template.ejs'), this._filePath, this._getTemplateVars());
     },
 
-    _subgenerator: function(subgeneratorName, content) {
+    _subgenerator: function(subgeneratorName) {
         var opts = {
             deep: true
         };
