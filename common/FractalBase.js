@@ -17,15 +17,17 @@ module.exports = generators.NamedBase.extend({
     constructor: function(preventDefaultFlags) {
         generators.NamedBase.apply(this, arguments);
 
-        var fileCtx = this.config.get("fileContext"),
-            tplDir  = this.config.get("templatesDir");
+        var fileCtx   = this.config.get("fileContext"),
+            tplDir    = this.config.get("templatesDir"),
+            unitTests = this.config.get("unitTests");
 
         this.camelCasedName = _.camelCase(this.name);
 
         this._fractalConfig = {
             knownCtxs: fileCtx ? Object.keys(fileCtx) : [],
             ctxs     : fileCtx ? fileCtx : false,
-            tplDir   : typeof tplDir === "string" ? tplDir : ""
+            tplDir   : typeof tplDir === "string" ? tplDir : "",
+            unitTests: typeof unitTests === "boolean" ? unitTests : false
         };
 
         this._setFractalPaths();
