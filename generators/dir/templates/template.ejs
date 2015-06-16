@@ -4,8 +4,9 @@ angular.module('<%= camelCasedName %>').directive('<%= camelCasedName %>', funct
     return {
         restrict    : 'E',
         replace     : true,<% if (ctrl) { %>
-        controller  : '<%= camelCasedName %>Ctrl',<% } %>
-        templateUrl : '<%= templateCacheName %>',
+        controller  : '<%= camelCasedName %>Ctrl',<% } %><% if (tpl) { %>
+        templateUrl : '<%= templateCacheName %>',<% } else { %>
+        template    : '<div class="<%= dashedName %>"></div>'<% } %>
         scope: {
 
         }

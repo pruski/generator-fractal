@@ -74,11 +74,12 @@ module.exports = generators.NamedBase.extend({
 
         this._filePath += this.name;
 
-        this.fs.copyTpl(this.templatePath('template.ejs'), this._fractalDistPath + sep + this._filePath + this._filenamePostfix, {
+        this.fs.copyTpl(this.templatePath('template.ejs'), this._fractalDistPath + this._filePath + this._filenamePostfix, {
                 dashedName       : this.name,
                 camelCasedName   : this.camelCasedName,
                 templateCacheName: (this._fractalCtxFound ? this._fractalConfig.tplDir : "") + this._fractalCtxRelativePath + this._filePath + '.html',
-                ctrl             : this._subgenerators.indexOf('ctrl') > -1
+                ctrl             : this._subgenerators.indexOf('ctrl') > -1,
+                tpl              : this._subgenerators.indexOf('tpl') > -1
             }
         );
     },
