@@ -4,8 +4,10 @@
   "description": "An Angular module generator supporting fractal-structured codebases.",
   "license": "MIT",
   "repository": "pruski/generator-fractal",
+  "main": "generators/app/index.js",
   "files": [
-    "app"
+    "common",
+    "generators"
   ],
   "keywords": [
     "yeoman-generator",
