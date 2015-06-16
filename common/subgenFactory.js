@@ -14,6 +14,10 @@ var subgenBase = {
 
     writing: function(){
         this._write(this.options.deep);
+
+        if(typeof this._postWriting === 'function') {
+            this._postWriting();
+        }
     },
 
     end: function(){
