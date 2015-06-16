@@ -83,10 +83,6 @@ module.exports = generators.NamedBase.extend({
             deep: true
         };
 
-        if(content) {
-            opts.content = content;
-        }
-
         this.composeWith('fractal:' + subgeneratorName, { args: [this.name], options: opts});
     },
 
