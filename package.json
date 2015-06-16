@@ -1,6 +1,6 @@
 {
   "name": "generator-fractal",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "An Angular module generator supporting fractal-structured codebases.",
   "license": "MIT",
   "repository": "pruski/generator-fractal",
