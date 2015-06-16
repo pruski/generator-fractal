@@ -1,0 +1,22 @@
+describe("<%= camelCasedName %>", function () {
+    "use strict";
+
+    describe("<%= camelCasedName %> Directive", function () {
+        var $scope,
+            element;
+
+        beforeEach(module("<%= camelCasedName %>"));
+
+        beforeEach(inject(function($rootScope, $compile) {
+            element = angular.element("<<%= dashedName %>></<%= dashedName %>>");
+
+            $scope = $rootScope;
+            $compile(element)($scope);
+            $scope.$digest();
+        }));
+
+        it("should contain unit tests for <%= camelCasedName %> Directive", function () {
+            expect(false).toBe(true);
+        });
+    }]);
+}]);

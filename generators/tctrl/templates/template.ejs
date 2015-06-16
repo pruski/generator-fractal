@@ -1,0 +1,21 @@
+describe("<%= camelCasedName %>", function () {
+    "use strict";
+
+    describe("<%= camelCasedName %>Ctrl", function () {
+        var $scope;
+
+        beforeEach(module("<%= camelCasedName %>"));
+
+        beforeEach(inject(function($rootScope, $controller){
+            $scope = $rootScope.$new();
+
+            $controller('<%= camelCasedName %>Ctrl', {
+                $scope: $scope
+            });
+        }));
+
+        it("should contain unit tests for <%= camelCasedName %>Ctrl", function () {
+            expect(false).toBe(true);
+        });
+    }]);
+}]);

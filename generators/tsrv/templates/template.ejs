@@ -1,0 +1,18 @@
+describe("<%= camelCasedName %>", function () {
+    "use strict";
+
+    describe("<%= camelCasedName %> Service", function () {
+        var <%= camelCasedName %>;
+
+        beforeEach(module("<%= camelCasedName %>"));
+
+        beforeEach(inject(function(<%= camelCasedName %>){
+            <%= camelCasedName %> = _<%= camelCasedName %>_;
+
+        }));
+
+        it("should contain unit tests for <%= camelCasedName %> Service", function () {
+            expect(false).toBe(true);
+        });
+    }]);
+}]);
