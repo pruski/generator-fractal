@@ -8,7 +8,7 @@ var yosay = require('yosay');
 
 module.exports = generators.NamedBase.extend({
     _filenamePostfix: '.js',
-    _greetingText   : 'Hi there!',
+    _greetingText   : 'Hi there!           Let\'s get started!',
     _context        : 'js',
     _subgenerators  : [],
 
