@@ -23,7 +23,7 @@ module.exports = generators.NamedBase.extend({
         this.camelCasedName = _.camelCase(this.name);
 
         this._fractalConfig = {
-            knownCtxs: Object.keys(fileCtx),
+            knownCtxs: fileCtx ? Object.keys(fileCtx) : [],
             ctxs     : fileCtx ? fileCtx : false,
             tplDir   : typeof tplDir === "string" ? tplDir : ""
         };
