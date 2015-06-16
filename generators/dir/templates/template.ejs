@@ -8,7 +8,7 @@ function(){
         replace     : true,<% if (ctrl) { %>
         controller  : '<%= camelCasedName %>Ctrl',<% } %><% if (tpl) { %>
         templateUrl : '<%= templateCacheName %>',<% } else { %>
-        template    : '<div class="<%= dashedName %>"></div>'<% } %><% if (link) { %>
+        template    : '<div class="<%= dashedName %>"></div>',<% } %><% if (link) { %>
         link: link,<% } %>
         scope: {}
     };
