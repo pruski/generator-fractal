@@ -75,14 +75,7 @@ module.exports = generators.NamedBase.extend({
     },
 
     _write: function () {
-        this.fs.copyTpl(this.templatePath('template.ejs'), this._filePath, {
-            dashedName       : this.name,
-            camelCasedName   : this.camelCasedName,
-            templateCacheName: (this._fractalCtxFound ? this._fractalConfig.tplDir : "") + this._fractalCtxRelativePath + this._filePath + '.html',
-            ctrl             : this._subgenerators.indexOf('ctrl') > -1,
-            tpl              : this._subgenerators.indexOf('tpl') > -1
-        });
-
+        this.fs.copyTpl(this.templatePath('template.ejs'), this._filePath, this._getTemplateVars());
     },
 
     _subgenerator: function(subgeneratorName, content) {
@@ -95,5 +88,18 @@ module.exports = generators.NamedBase.extend({
         }
 
         this.composeWith('fractal:' + subgeneratorName, { args: [this.name], options: opts});
+    },
+
+    _getTemplateVars: function () {
+        var tplVars = {
+            dashedName       : this.name,
+            camelCasedName   : this.camelCasedName
+        };
+
+        if(typeof this._getExtraTemplateVars === 'function') {
+            tplVars = _.extend(tplVars, this._getExtraTemplateVars());
+        }
+
+        return tplVars;
     }
 });
