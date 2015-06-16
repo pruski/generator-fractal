@@ -15,16 +15,18 @@ module.exports = generators.NamedBase.extend({
     constructor: function(preventDefaultFlags) {
         generators.NamedBase.apply(this, arguments);
 
-        var fileCtx = this.config.get("fileContext");
+        var fileCtx = this.config.get("fileContext"),
+            tplDir  = this.config.get("templatesDir");
 
         this.camelCasedName = _.camelCase(this.name);
 
         this._fractalConfig = {
             knownCtxs: Object.keys(fileCtx),
-            ctxs: fileCtx ? fileCtx : false
+            ctxs     : fileCtx ? fileCtx : false,
+            tplDir   : typeof tplDir === "string" ? tplDir : ""
         };
 
-        this._fractalDistPath = this._getDistPath();
+        this._setFractalPaths();
     },
 
     _greetings: function () {
@@ -39,9 +41,12 @@ module.exports = generators.NamedBase.extend({
         }
     },
 
-    _getDistPath: function () {
-        var tmpDistPath  =  this.env.cwd.replace(this.destinationRoot() + sep, ''),
-            contextFound = false;
+    _setFractalPaths: function () {
+        var cwd             = this.env.cwd + sep,
+            distPath        = cwd,
+            ctxRelativePath = cwd.replace(this.destinationRoot() + sep, ''),
+            tmpDistPath     = ctxRelativePath,
+            contextFound    = false;
 
         this._fractalConfig.knownCtxs.forEach(function(ctx) {
             if(tmpDistPath.indexOf(ctx + sep) === 0) {
@@ -51,26 +56,28 @@ module.exports = generators.NamedBase.extend({
         });
 
         if(contextFound) {
-            return this.destinationRoot() + sep + this._fractalConfig.ctxs[this._context].path + sep + tmpDistPath + sep;
-
-        } else {
-            return this.env.cwd;
+            distPath        = this.destinationRoot() + sep + this._fractalConfig.ctxs[this._context].path + tmpDistPath;
+            ctxRelativePath = tmpDistPath;
         }
+
+        this._fractalDistPath        = distPath;
+        this._fractalCtxRelativePath = ctxRelativePath;
+        this._fractalCtxFound        = contextFound;
     },
 
     _write: function (deep) {
-        this._filePath = this._fractalDistPath + sep;
+        this._filePath = "";
 
         if(deep) {
             this._filePath += this.name + sep;
         }
 
-        this._filePath += this.name + this._filenamePostfix;
+        this._filePath += this.name;
 
-        this.fs.copyTpl(this.templatePath('template.ejs'), this._filePath, {
+        this.fs.copyTpl(this.templatePath('template.ejs'), this._fractalDistPath + sep + this._filePath + this._filenamePostfix, {
                 dashedName       : this.name,
                 camelCasedName   : this.camelCasedName,
-                templateCacheName: 'templates/' + this.name,
+                templateCacheName: (this._fractalCtxFound ? this._fractalConfig.tplDir : "") + this._fractalCtxRelativePath + this._filePath + '.html',
                 ctrl             : this._subgenerators.indexOf('ctrl') > -1
             }
         );
