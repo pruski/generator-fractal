@@ -63,25 +63,26 @@ module.exports = generators.NamedBase.extend({
         this._fractalDistPath        = distPath;
         this._fractalCtxRelativePath = ctxRelativePath;
         this._fractalCtxFound        = contextFound;
-    },
 
-    _write: function (deep) {
-        this._filePath = "";
+        this._rawFilePath = "";
 
-        if(deep) {
-            this._filePath += this.name + sep;
+        if(this.options.deep) {
+            this._rawFilePath += this.name + sep;
         }
 
-        this._filePath += this.name;
+        this._rawFilePath += this.name;
+        this._filePath = this._fractalDistPath + this._rawFilePath + this._filenamePostfix;
+    },
 
-        this.fs.copyTpl(this.templatePath('template.ejs'), this._fractalDistPath + this._filePath + this._filenamePostfix, {
-                dashedName       : this.name,
-                camelCasedName   : this.camelCasedName,
-                templateCacheName: (this._fractalCtxFound ? this._fractalConfig.tplDir : "") + this._fractalCtxRelativePath + this._filePath + '.html',
-                ctrl             : this._subgenerators.indexOf('ctrl') > -1,
-                tpl              : this._subgenerators.indexOf('tpl') > -1
-            }
-        );
+    _write: function () {
+        this.fs.copyTpl(this.templatePath('template.ejs'), this._filePath, {
+            dashedName       : this.name,
+            camelCasedName   : this.camelCasedName,
+            templateCacheName: (this._fractalCtxFound ? this._fractalConfig.tplDir : "") + this._fractalCtxRelativePath + this._filePath + '.html',
+            ctrl             : this._subgenerators.indexOf('ctrl') > -1,
+            tpl              : this._subgenerators.indexOf('tpl') > -1
+        });
+
     },
 
     _subgenerator: function(subgeneratorName, content) {
