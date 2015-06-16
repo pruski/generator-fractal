@@ -1,9 +1,9 @@
 "use strict";
 
-var _ = require('lodash');
-var fs            = require('fs');
-var sep = require('path').sep;
-var chalk         = require('chalk');
+var _     = require('lodash');
+var fs    = require('fs');
+var sep   = require('path').sep;
+var chalk = require('chalk');
 
 var generators = require('yeoman-generator');
 var yosay = require('yosay');
