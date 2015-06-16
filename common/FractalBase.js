@@ -80,6 +80,29 @@ module.exports = generators.NamedBase.extend({
         this.fs.copyTpl(this.templatePath('template.ejs'), this._filePath, this._getTemplateVars());
     },
 
+    _scheduleSubgen: function (subgenName) {
+        if(!this._isSubgenQueued(subgenName)) {
+            this._subgenerators.push({name: subgenName, executed: false});
+        }
+    },
+
+    _isSubgenQueued: function(subgenName) {
+        return !this._subgenerators.reduce(function(notQueued, subgen) {
+            return notQueued && subgen.name !== subgenName;
+        }, true);
+    },
+
+    _releaseSubgenQueue: function () {
+        var pending = this._subgenerators.filter(function(subgen) {
+            return !subgen.executed;
+        });
+
+        if(pending.length > 0) {
+            pending[0].executed = true;
+            this._subgenerator(pending[0].name);
+        }
+    },
+
     _subgenerator: function(subgeneratorName) {
         var opts = {
             deep: true

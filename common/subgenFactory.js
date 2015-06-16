@@ -18,6 +18,8 @@ var subgenBase = {
         if(typeof this._postWriting === 'function') {
             this._postWriting();
         }
+
+        this._releaseSubgenQueue();
     },
 
     end: function(){

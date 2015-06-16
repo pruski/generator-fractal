@@ -3,8 +3,6 @@ var FractalBase = require('../../common/FractalBase');
 module.exports = FractalBase.extend({
     constructor: function () {
         FractalBase.apply(this, arguments);
-
-        this._subgenerators.push('comp');
     },
 
     initializing: function () {
@@ -47,22 +45,26 @@ module.exports = FractalBase.extend({
         }];
 
         this.prompt(prompts, function (props) {
-            if(props.ctrl === 'yes') this._subgenerators.push('ctrl');
-            if(props.dir  === 'yes') this._subgenerators.push('dir');
-            if(props.srv  === 'yes') this._subgenerators.push('srv');
-            if(props.tpl  === 'yes') this._subgenerators.push('tpl');
-            if(props.less === 'yes') this._subgenerators.push('less');
+            if(props.dir  === 'yes') {
+                this._scheduleSubgen('dir');
 
-            this.log('---------------------------------');
+            } else {
+                this.log('---------------------------------');
+            }
+
+            if(props.ctrl === 'yes') this._scheduleSubgen('ctrl');
+            if(props.srv  === 'yes') this._scheduleSubgen('srv');
+            if(props.tpl  === 'yes') this._scheduleSubgen('tpl');
+            if(props.less === 'yes') this._scheduleSubgen('less');
+
+            this._scheduleSubgen('comp');
+
             done();
         }.bind(this));
     },
 
     writing: function () {
-        this._subgenerators.forEach(function (subgeneratorName) {
-            this._subgenerator(subgeneratorName);
-
-        }, this);
+        this._releaseSubgenQueue();
     },
 
     end: function(){
