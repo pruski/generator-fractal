@@ -1,7 +1,9 @@
 "use strict";
 
 var _ = require('lodash');
+var fs            = require('fs');
 var sep = require('path').sep;
+var chalk         = require('chalk');
 
 var generators = require('yeoman-generator');
 var yosay = require('yosay');
@@ -97,5 +99,32 @@ module.exports = generators.NamedBase.extend({
         }
 
         return tplVars;
+    },
+
+    _injectNewModule: function () {
+        var parentModulePath,
+            splittedPath = this._fractalDistPath.split(sep).filter(function (dir) {
+                return dir.length > 0;
+            });
+
+        if(splittedPath[splittedPath.length - 1] === this.name) {
+            splittedPath.pop();
+        }
+
+        parentModulePath = sep + splittedPath.join(sep)+ sep + splittedPath[splittedPath.length - 1] + this._filenamePostfix;
+
+        if(fs.existsSync(parentModulePath)) {
+            this._injectDependency(parentModulePath);
+        }
+    },
+
+    _injectDependency: function (parentModulePath) {
+        var content       = fs.readFileSync(parentModulePath, "utf8").trim(),
+            injectionData = this._getInjectionData(content, this._getInjectionIdx(content)),
+            feedback      = '   ' + chalk.green.bold(this.camelCasedName) + ' ' + chalk.green('have been injected into ' + parentModulePath.replace(this.destinationRoot(), ''))
+
+        this.conflicter.force = true;
+        fs.writeFileSync(parentModulePath, content.slice(0, injectionData.index) + injectionData.content + content.slice(injectionData.index));
+        this.log(feedback);
     }
 });
