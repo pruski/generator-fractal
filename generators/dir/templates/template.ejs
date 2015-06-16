@@ -1,4 +1,6 @@
-angular.module('<%= camelCasedName %>').directive('<%= camelCasedName %>', function(){
+angular.module('<%= camelCasedName %>').directive('<%= camelCasedName %>', [
+
+function(){
     'use strict';
 
     return {
@@ -6,9 +8,13 @@ angular.module('<%= camelCasedName %>').directive('<%= camelCasedName %>', funct
         replace     : true,<% if (ctrl) { %>
         controller  : '<%= camelCasedName %>Ctrl',<% } %><% if (tpl) { %>
         templateUrl : '<%= templateCacheName %>',<% } else { %>
-        template    : '<div class="<%= dashedName %>"></div>'<% } %>
-        scope: {
-
-        }
+        template    : '<div class="<%= dashedName %>"></div>'<% } %><% if (link) { %>
+        link: link,<% } %>
+        scope: {}
     };
-});
+<% if (link) { %>
+    function link(scope, element) {
+
+    }
+<% } %>
+}]);
