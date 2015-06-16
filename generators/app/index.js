@@ -3,6 +3,8 @@ var FractalBase = require('../../common/FractalBase');
 module.exports = FractalBase.extend({
     constructor: function () {
         FractalBase.apply(this, arguments);
+
+        this.options.deep = true;
     },
 
     initializing: function () {

@@ -32,13 +32,15 @@ module.exports = generators.NamedBase.extend({
     },
 
     _greetings: function () {
-        if(!this.options.deep) {
+        if(!this.options.yosay) {
+            this.options.yosay = true;
             this.log(yosay(this._greetingText));
         }
     },
 
     _bye: function () {
-        if(!this.options.deep) {
+        if(!this.options.bye) {
+            this.options.bye = true;
             this.log('\n\nThanks for using Fractal!\n\n');
         }
     },
@@ -104,11 +106,7 @@ module.exports = generators.NamedBase.extend({
     },
 
     _subgenerator: function(subgeneratorName) {
-        var opts = {
-            deep: true
-        };
-
-        this.composeWith('fractal:' + subgeneratorName, { args: [this.name], options: opts});
+        this.composeWith('fractal:' + subgeneratorName, { args: [this.name], options: this.options});
     },
 
     _getTemplateVars: function () {
