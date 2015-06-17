@@ -22,17 +22,24 @@ To create a module, run:
 yo fractal module-name
 ```
 
-Generator will ask you some questions, create a directory for the new component and place all the files inside.
+Generator will ask you a few questions, create a directory for the new component and place all the files inside it.
 Additionally, in case of Less and Angular files, it will find parent module and inject import string.
 
 If `unitTests` flag is enabled in config file, along with directive/controller/service files, generator will yield spec files.
 
+## Naming convention
+
+All the directories and filenames are hyphenated, as well as directives in html and css classes. Names in javascript are camelCased.
+
 ## Context files
 
-It is common practice to keep javascript files separated from html templates, styles or unit tests.
-Fractal allows you to specify where you want to keep your files, divided by different contexts.
+By default new component directory will be created in the current working directory.
+However, it is common practice to keep javascript files separated from html templates, styles or unit tests.
+That's why Fractal allows you to specify where you want to keep which files, grouped by file context.
 
-This sample config, stored in your app root directry as `.yo-rc.json` file
+**In order to do that, you must run fractal under a defined context path.**
+
+E.g. this sample config, stored in your app root directory as `.yo-rc.json` file
 
 ```json
 {
@@ -65,7 +72,7 @@ Combined with
 yo fractal admin-dashboard
 ```
 
-Will result in the following structure:
+Will result in the following output:
 
     js/admin-dashboard/admin-dashboard-directive.js
     js/admin-dashboard/admin-dashboard-controller.js
@@ -76,9 +83,6 @@ Will result in the following structure:
     test/unit/admin-dashboard/admin-dashboard-controller.spec.js
     test/unit/admin-dashboard/admin-dashboard-service.spec.js
     test/unit/admin-dashboard/admin-dashboard-directive.spec.js
-
-
-**The command must be run under one of the context paths**
 
 
 ## Current supported stack
@@ -101,25 +105,23 @@ You may want to create only a directive, controller, service, etc. Currently ava
 
 * `fractal:less` - less css
 
-* `fractal:tdir` - less css
+* `fractal:tdir` - directive unit test
 
-* `fractal:tctrl` - less css
+* `fractal:tctrl` - controller unit test
 
-* `fractal:tsrv` - less css
+* `fractal:tsrv` - service unit test
 
-In this case, the file will be crated in the current directory.
+In this case, the file will be crated in the current working directory.
 
 ## Don't like my templates?
 
-Read the code and change them, and save for later reuse.
+Change them. And save for later reuse.
 
-I'm hoping to make this tool elastic enough to support different and custom setups.
-
-But it is what I need at the moment.
+I'm hoping to make this tool elastic enough to support different and custom setups in the future.
 
 ## Development
 
-The code is quite messy, but it works well.
+The code needs a bit of refactoring and test coverage.
 
 If you use it, please report bugs, ask for features.
 
