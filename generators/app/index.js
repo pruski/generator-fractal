@@ -17,8 +17,14 @@ module.exports = FractalBase.extend({
         var prompts = [{
             type: 'list',
             choices: ['yes', 'no'],
-            name: 'dir',
-            message: 'Do you need a Directive?',
+            name: 'tpl',
+            message: 'Do you need a Template?',
+            default: 'yes'
+        }, {
+            type: 'list',
+            choices: ['yes', 'no'],
+            name: 'less',
+            message: 'Do you need a Less file?',
             default: 'yes'
         }, {
             type: 'list',
@@ -35,14 +41,8 @@ module.exports = FractalBase.extend({
         }, {
             type: 'list',
             choices: ['yes', 'no'],
-            name: 'tpl',
-            message: 'Do you need a Template?',
-            default: 'yes'
-        }, {
-            type: 'list',
-            choices: ['yes', 'no'],
-            name: 'less',
-            message: 'Do you need a LESS file?',
+            name: 'dir',
+            message: 'Do you need a Directive?',
             default: 'yes'
         }];
 

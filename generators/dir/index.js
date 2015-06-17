@@ -13,7 +13,7 @@ module.exports = subgenFactory.create({
             type: 'list',
             choices: ['yes', 'no'],
             name: 'link',
-            message: 'Do you need link function?',
+            message: 'Include a link function?',
             default: 'no'
         }];
 
