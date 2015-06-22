@@ -84,10 +84,12 @@ Will result in the following output:
     test/unit/admin-dashboard/admin-dashboard-service.spec.js
     test/unit/admin-dashboard/admin-dashboard-directive.spec.js
 
+## Config file
 
-## Current supported stack
+`fileContext`   is a map of contexts and its settings
+`templatesPath` is a public templates directory (eg. the one you prefix templateCache with)
+`unitTests`     determines whether to automatically enqueue a corresponding test subgenerator for a javascript file
 
-Angular 1.x, Less, Jasmine
 
 ## Subgenerators
 
@@ -113,13 +115,19 @@ You may want to create only a directive, controller, service, etc. Currently ava
 
 In this case, the file will be crated in the current working directory.
 
+
+## Current supported stack
+
+Angular 1.x, Less, Jasmine
+
+
 ## Don't like my templates?
 
 Change them. And save for later reuse.
 
 I'm hoping to make this tool elastic enough to support different and custom setups in the future.
 
-## Development
+## Active development
 
 The code needs a bit of refactoring and test coverage.
 
