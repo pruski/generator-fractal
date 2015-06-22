@@ -55,11 +55,11 @@ module.exports = generators.NamedBase.extend({
             contextFound    = false;
 
         this._fractalConfig.knownCtxs.forEach(function(ctx) {
-            if(tmpDistPath.indexOf(ctx + sep) === 0) {
+            if(tmpDistPath.indexOf(this._fractalConfig.ctxs[ctx].path) === 0) {
                 contextFound = true;
-                tmpDistPath = tmpDistPath.replace(ctx + sep, '');
+                tmpDistPath = tmpDistPath.replace(this._fractalConfig.ctxs[ctx].path, '');
             }
-        });
+        }, this);
 
         if(contextFound) {
             distPath        = this.destinationRoot() + sep + this._fractalConfig.ctxs[this._context].path + tmpDistPath;
