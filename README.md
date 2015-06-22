@@ -87,7 +87,9 @@ Will result in the following output:
 ## Config file
 
 `fileContext`   is a map of contexts and its settings
+
 `templatesPath` is a public templates directory (eg. the one you prefix templateCache with)
+
 `unitTests`     determines whether to automatically enqueue a corresponding test subgenerator for a javascript file
 
 
