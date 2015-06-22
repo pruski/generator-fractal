@@ -7,7 +7,7 @@ function(){
         restrict    : 'E',
         replace     : true,<% if (ctrl) { %>
         controller  : '<%= camelCasedName %>Ctrl',<% } %><% if (tpl) { %>
-        templateUrl : '<%= templateCacheName %>',<% } else { %>
+        templateUrl : '<%= tplFullPath %>',<% } else { %>
         template    : '<div class="<%= dashedName %>"></div>',<% } %><% if (link) { %>
         link: link,<% } %>
         scope: {}

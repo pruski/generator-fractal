@@ -61,7 +61,7 @@ E.g. this sample config, stored in your app root directory as `.yo-rc.json` file
         		"path": "test/unit/"
         	}
         },
-        "templatesDir": "templates/angular/",
+        "templatesPath": "templates/angular/",
         "unitTests": true
     }
 }

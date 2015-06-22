@@ -61,10 +61,10 @@ module.exports = subgenFactory.create({
 
     _getExtraTemplateVars: function() {
         return {
-            link             : this.options.linkFn,
-            ctrl             : this._isSubgenQueued('ctrl'),
-            tpl              : this._isSubgenQueued('tpl'),
-            templateCacheName: (this._fractalCtxFound ? this._fractalConfig.tplDir : "") + this._fractalCtxRelativePath + this._rawFilePath + '.html',
+            link         : this.options.linkFn,
+            ctrl         : this._isSubgenQueued('ctrl'),
+            tpl          : this._isSubgenQueued('tpl'),
+            tplFullPath  : (this._fractalCtxFound ? this._fractalConfig.tplPath : "") + this._fractalCtxRelativePath + this._rawFilePath + '.html',
         };
     }
 });
