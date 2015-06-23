@@ -67,7 +67,6 @@ var FractalBase = {
 
         this._fractalDistPath        = distPath;
         this._fractalCtxRelativePath = ctxRelativePath;
-        this._fractalCtxFound        = contextFound;
 
         this._rawFilePath = "";
 
