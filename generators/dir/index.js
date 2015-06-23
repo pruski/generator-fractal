@@ -6,6 +6,14 @@ module.exports = subgenFactory.create({
     _context: 'js',
     _filenamePostfix: '-directive.js',
 
+    initializing: function () {
+        this._greetings();
+
+        if(this._fractalConfig.unitTests) {
+            this._scheduleSubgen('tdir');
+        }
+    },
+
     prompting: function () {
         var done = this.async();
 
