@@ -47,9 +47,8 @@ var FractalBase = {
     },
 
     _setFractalPaths: function () {
-        var cwd             = this.env.cwd + sep,
-            distPath        = cwd,
-            ctxRelativePath = cwd.replace(this.destinationRoot() + sep, ''),
+        var distPath        = this.env.cwd + sep,
+            ctxRelativePath = distPath.replace(this.destinationRoot() + sep, ''),
             tmpDistPath     = ctxRelativePath,
             contextFound    = false;
 
