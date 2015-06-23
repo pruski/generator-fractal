@@ -17,15 +17,13 @@ module.exports = generators.NamedBase.extend({
     constructor: function(preventDefaultFlags) {
         generators.NamedBase.apply(this, arguments);
 
-        var fileCtx   = this.config.get("fileContext"),
-            tplPath   = this.config.get("templatesPath"),
+        var tplPath   = this.config.get("templatesPath"),
             unitTests = this.config.get("unitTests");
 
         this.camelCasedName = _.camelCase(this.name);
 
         this._fractalConfig = {
-            knownCtxs: fileCtx ? Object.keys(fileCtx) : [],
-            ctxs     : fileCtx ? fileCtx : false,
+            ctxs     : this.config.get("fileContext") || false,
             tplPath  : typeof tplPath === "string" ? tplPath : "",
             unitTests: typeof unitTests === "boolean" ? unitTests : false
         };
@@ -54,7 +52,7 @@ module.exports = generators.NamedBase.extend({
             tmpDistPath     = ctxRelativePath,
             contextFound    = false;
 
-        this._fractalConfig.knownCtxs.forEach(function(ctx) {
+        Object.keys(this._fractalConfig.ctxs).forEach(function(ctx) {
             if(tmpDistPath.indexOf(this._fractalConfig.ctxs[ctx].path) === 0) {
                 contextFound = true;
                 tmpDistPath = tmpDistPath.replace(this._fractalConfig.ctxs[ctx].path, '');
