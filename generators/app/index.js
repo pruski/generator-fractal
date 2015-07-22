@@ -24,7 +24,7 @@ module.exports = FractalBase.extend({
             type: 'list',
             choices: ['yes', 'no'],
             name: 'less',
-            message: 'Do you need a Less file?',
+            message: 'Do you need a Stylesheet?',
             default: 'yes'
         }, {
             type: 'list',
