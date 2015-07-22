@@ -24,7 +24,7 @@ var FractalBase = {
         this.camelCasedName = _.camelCase(this.name);
 
         this._fractalConfig = {
-            ctxs     : this.config.get("fileContext") || false,
+            ctxs     : this.config.get("fileContext") || {},
             tplPath  : typeof tplPath === "string" ? tplPath : "",
             unitTests: typeof unitTests === "boolean" ? unitTests : false
         };
