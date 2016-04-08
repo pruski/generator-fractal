@@ -1,0 +1,7 @@
+angular.module('<%= camelCasedName %>').component('<%= camelCasedName %>', {
+    controllerAs: '<%= camelCasedName %>',
+    controller  : '<%= camelCasedName %>Ctrl',<% if (tpl) { %>
+    templateUrl : '<%= tplFullPath %>',<% } else { %>
+    template    : '<div class="<%= dashedName %>"></div>',<% } %>
+    bindings: {}
+});

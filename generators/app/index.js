@@ -17,6 +17,12 @@ module.exports = FractalBase.extend({
         var prompts = [{
             type: 'list',
             choices: ['yes', 'no'],
+            name: 'cmp',
+            message: 'Do you need a Component?',
+            default: 'yes'
+        }, {
+            type: 'list',
+            choices: ['yes', 'no'],
             name: 'tpl',
             message: 'Do you need a Template?',
             default: 'yes'
@@ -38,17 +44,11 @@ module.exports = FractalBase.extend({
             name: 'srv',
             message: 'Do you need a Service?',
             default: 'yes'
-        }, {
-            type: 'list',
-            choices: ['yes', 'no'],
-            name: 'dir',
-            message: 'Do you need a Directive?',
-            default: 'yes'
         }];
 
         this.prompt(prompts, function (props) {
-            if(props.dir  === 'yes') {
-                this._scheduleSubgen('dir');
+            if(props.cmp  === 'yes') {
+                this._scheduleSubgen('cmp');
 
             } else {
                 this.log('---------------------------------');

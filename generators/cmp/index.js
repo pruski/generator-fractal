@@ -4,7 +4,7 @@ var subgenFactory  = require('../../common/subgenFactory');
 
 module.exports = subgenFactory.create({
     _context: 'ts',
-    _filenamePostfix: '-directive.ts',
+    _filenamePostfix: '-component.ts',
 
     initializing: function () {
         this._greetings();
@@ -13,13 +13,7 @@ module.exports = subgenFactory.create({
     prompting: function () {
         var done = this.async();
 
-        var prompts = [{
-            type: 'list',
-            choices: ['yes', 'no'],
-            name: 'link',
-            message: 'Include a link function?',
-            default: 'no'
-        }];
+        var prompts = [];
 
         if(!this.options.deep && !this._isSubgenQueued('ctrl')) {
             prompts.push({
