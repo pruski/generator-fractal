@@ -8,10 +8,6 @@ module.exports = subgenFactory.create({
 
     initializing: function () {
         this._greetings();
-
-        if(this._fractalConfig.unitTests) {
-            this._scheduleSubgen('tdir');
-        }
     },
 
     prompting: function () {
@@ -48,10 +44,6 @@ module.exports = subgenFactory.create({
         this.prompt(prompts, function (props) {
             if(props.link === 'yes') {
                 this.options.linkFn = true;
-
-                if(this._fractalConfig.unitTests) {
-                    this._scheduleSubgen('tdir');
-                }
             }
 
             if(props.ctrl === 'yes') {
