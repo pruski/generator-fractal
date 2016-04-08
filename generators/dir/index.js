@@ -64,7 +64,7 @@ module.exports = subgenFactory.create({
             link         : this.options.linkFn,
             ctrl         : this._isSubgenQueued('ctrl'),
             tpl          : this._isSubgenQueued('tpl'),
-            tplFullPath  : this._fractalConfig.tplPath+ this._fractalCtxRelativePath + this._rawFilePath + '.html',
+            tplFullPath  : this._fractalConfig.tplPath+ this._fractalCtxRelativePath + this._rawFilePath + '.html'
         };
     }
 });
