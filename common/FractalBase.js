@@ -11,9 +11,9 @@ var yosay = require('yosay');
 var SubgenQueue = require('./SubgenQueue');
 
 var FractalBase = {
-    _filenamePostfix: '.js',
+    _filenamePostfix: '.ts',
     _greetingText   : 'Hi there!           Let\'s get started!',
-    _context        : 'js',
+    _context        : 'ts',
 
     constructor: function(preventDefaultFlags) {
         generators.NamedBase.apply(this, arguments);

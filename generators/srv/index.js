@@ -3,8 +3,8 @@
 var subgenFactory  = require('../../common/subgenFactory');
 
 module.exports = subgenFactory.create({
-    _context: 'js',
-    _filenamePostfix: '-service.js',
+    _context: 'ts',
+    _filenamePostfix: '-service.ts',
 
     initializing: function () {
         this._greetings();
