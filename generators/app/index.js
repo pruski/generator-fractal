@@ -17,12 +17,6 @@ module.exports = FractalBase.extend({
         var prompts = [{
             type: 'list',
             choices: ['yes', 'no'],
-            name: 'cmp',
-            message: 'Do you need a Component?',
-            default: 'yes'
-        }, {
-            type: 'list',
-            choices: ['yes', 'no'],
             name: 'tpl',
             message: 'Do you need a Template?',
             default: 'yes'
@@ -37,6 +31,12 @@ module.exports = FractalBase.extend({
             choices: ['yes', 'no'],
             name: 'ctrl',
             message: 'Do you need a Controller?',
+            default: 'yes'
+        }, {
+            type: 'list',
+            choices: ['yes', 'no'],
+            name: 'cmp',
+            message: 'Do you need a Component?',
             default: 'yes'
         }, {
             type: 'list',
