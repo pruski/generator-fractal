@@ -59,7 +59,7 @@ module.exports = FractalBase.extend({
             if(props.tpl  === 'yes') this._scheduleSubgen('tpl');
             if(props.less === 'yes') this._scheduleSubgen('less');
 
-            this._scheduleSubgen('comp');
+            this._scheduleSubgen('module');
 
             done();
         }.bind(this));
