@@ -2,17 +2,24 @@ describe("<%= camelCasedName %>", function () {
     "use strict";
 
     describe("<%= camelCasedName %>Ctrl", function () {
-        var $scope;
+        var $controller,
+            $scope;
 
         beforeEach(module("<%= camelCasedName %>"));
 
-        beforeEach(inject(function($rootScope, $controller){
+        beforeEach(inject(function($rootScope, _$controller_){
+            $controller = _$controller_;
+
             $scope = $rootScope.$new();
 
+            createInstace();
+        }));
+
+        function createInstace() {
             $controller('<%= camelCasedName %>Ctrl', {
                 $scope: $scope
             });
-        }));
+        }
 
         it("should contain unit tests for <%= camelCasedName %>Ctrl", function () {
             expect(false).toBe(true);
