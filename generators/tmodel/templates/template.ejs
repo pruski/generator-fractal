@@ -1,0 +1,20 @@
+describe("<%= pascalCasedName %>", function () {
+    describe("<%= pascalCasedName %>", function () {
+        var <%= camelCasedName %>,
+            <%= pascalCasedName %>;
+
+        beforeEach(module("<%= camelCasedName %>"));
+
+        beforeEach(inject(function(_<%= pascalCasedName %>_){
+            <%= pascalCasedName %> = _<%= pascalCasedName %>_;
+
+            <%= camelCasedName %> = new <%= pascalCasedName %>();
+        }));
+
+        describe("constructor()", function() {
+            it("should initialise properly", function() {
+
+            });
+        });
+    });
+});

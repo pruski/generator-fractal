@@ -21,7 +21,8 @@ var FractalBase = {
         var tplPath   = this.config.get("templatesPath"),
             unitTests = this.config.get("unitTests");
 
-        this.camelCasedName = _.camelCase(this.name);
+        this.camelCasedName  = _.camelCase(this.name);
+        this.pascalCasedName = _.capitalize(this.camelCasedName);
 
         this._fractalConfig = {
             ctxs     : this.config.get("fileContext") || {},
@@ -84,7 +85,8 @@ var FractalBase = {
     _getTemplateVars: function () {
         var tplVars = {
             dashedName       : this.name,
-            camelCasedName   : this.camelCasedName
+            camelCasedName   : this.camelCasedName,
+            pascalCasedName  : this.pascalCasedName
         };
 
         if(typeof this._getExtraTemplateVars === 'function') {
