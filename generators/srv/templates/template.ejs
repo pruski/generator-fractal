@@ -3,9 +3,11 @@ angular.module('<%= camelCasedName %>').factory('<%= camelCasedName %>', [
 function(){
     'use strict';
 
-    return {
+    const <%= camelCasedName %> = {
         getExample: function() {
             return true;
         }
     };
+
+    return service;
 }]);
