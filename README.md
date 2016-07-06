@@ -99,9 +99,9 @@ You may want to create only a directive, controller, service, etc. Currently ava
 
 * `fractal:comp` - module definition
 
-* `fractal:ctrl` - directive
+* `fractal:dir` - directive
 
-* `fractal:dir` - controller
+* `fractal:ctrl` - controller
 
 * `fractal:srv` - service
 
